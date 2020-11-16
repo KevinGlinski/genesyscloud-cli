@@ -6,7 +6,8 @@ setup(
     py_modules=['genesyscloudcli'],
     install_requires=[
         'Click',
-        'pyyaml'
+        'pyyaml',
+        'websockets'
     ],
     entry_points='''
         [console_scripts]

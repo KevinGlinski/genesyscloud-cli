@@ -31,6 +31,7 @@ class ProfileHandler:
 
         if not config.has_section(profile):
             print("profile {} not found".format(name))
+            sys.exit(1)
             return
 
         return Profile()
