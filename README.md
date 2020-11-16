@@ -6,6 +6,15 @@ The Genesys Cloud cli is a tool to interact with [Genesys Cloud](https://develop
 //TODO: pip install ... ?
 
 ## Local setup
+
+Testing locally
+```
+$ cd genesyscloudcli
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install --editable .
+```
+
 The cli authenticates using client credentials which you will have to [create yourself](https://help.mypurecloud.com/articles/create-an-oauth-client/)
 
 ```gc profile new``` is the easiest way to setup your credentials.  This will create a credentials file at ~/.genesyscloud/credentials and can support multiple profiles for different organizations.
