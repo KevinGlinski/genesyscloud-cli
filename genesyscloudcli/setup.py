@@ -8,7 +8,8 @@ setup(
         'Click',
         'pyyaml',
         'websockets',
-        'requests'
+        'requests', 
+        'aioconsole'
     ],
     entry_points='''
         [console_scripts]
