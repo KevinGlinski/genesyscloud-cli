@@ -1,33 +1,33 @@
-import campaign
+import campaigns
 import chat_command
 import click
-import contact_list
-import division
-import group
-import location
+import contact_lists
+import divisions
+import groups
+import locations
 import notifications_command
-import presence
+import presences
 import profile_command
-import queue
-import skill
-import user
+import queues
+import skills
+import users
 
 
 @click.group()
 def cli():
-    """Entry point"""
+    """Entry p"""
     pass
 
 
-campaign.register(cli)
+campaigns.register(cli)
 profile_command.register(cli)
 chat_command.register(cli)
 notifications_command.register(cli)
-contact_list.register(cli)
-division.register(cli)
-group.register(cli)
-location.register(cli)
-presence.register(cli)
-# queue.register(cli)
-skill.register(cli)
-user.register(cli)
+contact_lists.register(cli)
+divisions.register(cli)
+groups.register(cli)
+locations.register(cli)
+presences.register(cli)
+queues.register(cli)
+skills.register(cli)
+users.register(cli)
