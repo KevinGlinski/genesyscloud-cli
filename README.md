@@ -21,7 +21,7 @@ The cli authenticates using client credentials which you will have to [create yo
 
 ```
 $ gc profile new
-Profile Name [Default]: mycompanyname
+Profile Name [DEFAULT]: mycompanyname
 Genesys Cloud Environment (mypurecloud.com, usw2.pure.cloud): mypurecloud.com
 OAuth Client ID: dfbdc514-e830-4745-bffa-1cb7ee7f2736
 OAuth Client Secret: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY

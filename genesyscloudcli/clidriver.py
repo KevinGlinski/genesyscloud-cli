@@ -1,6 +1,9 @@
 import click
+import profile_command
 
-@click.command()
+@click.group()
 def cli():
-    """Example script."""
-    click.echo('Hello World!')
+    pass
+
+
+profile_command.register(cli)
