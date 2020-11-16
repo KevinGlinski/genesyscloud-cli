@@ -7,7 +7,8 @@ setup(
     install_requires=[
         'Click',
         'pyyaml',
-        'websockets'
+        'websockets',
+        'requests'
     ],
     entry_points='''
         [console_scripts]
