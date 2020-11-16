@@ -2,26 +2,26 @@ import api_client
 import click
 from click.decorators import option
 
-user_route = "/api/v2/users"
+users_route = "/api/v2/users"
 
 @click.group()
-def user():
+def users():
     """Functions to handle Users"""
     pass
 
-@user.command()
+@users.command()
 def list():
-    """Listing Users"""
+    """List Users"""
     client = api_client.ApiClient()
-    return client.get(user_route)
+    return client.get(users_route)
 
-@user.command()
-@option("--userId", "-u", required=True, type=str)
-def list(user):
-    """Get specific Users"""
+@users.command()
+@click.argument("user_id")
+def list(user_id):
+    """Get a specific User"""
     client = api_client.ApiClient()
-    return client.get(user_route+"/{}".format(user))
+    return client.get(users_route+"/{}".format(user_id))
 
 
 def register(cli):
-    cli.add_command(user)
+    cli.add_command(users)

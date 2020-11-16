@@ -5,23 +5,23 @@ from click.decorators import option
 group_route = "/api/v2/groups"
 
 @click.group()
-def group():
+def groups():
     """Functions to handle Groups"""
     pass
 
-@group.command()
+@groups.command()
 def list():
     """Listing Groups"""
     client = api_client.ApiClient()
     return client.get(group_route)
 
-@group.command()
-@option("--group_id", "-g", required=True, type=str)
+@groups.command()
+@click.argument("group_id")
 def get(group_id):
-    """List specific Group"""
+    """List a specific Group"""
     client = api_client.ApiClient()
     return client.get(group_route+"/{}".format(group_id))
 
 
 def register(cli):
-    cli.add_command(group)
+    cli.add_command(groups)

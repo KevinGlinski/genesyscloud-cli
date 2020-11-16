@@ -16,11 +16,11 @@ def list():
     return client.get(locations_route)
 
 @locations.command()
-@option("--location_id", "-l", required=True, type=str)
-def get(locations_id):
+@click.argument("location_id")
+def get(location_id):
     """List specific locations"""
     client = api_client.ApiClient()
-    return client.get(locations_route+"/{}".format(locations_id))
+    return client.get(locations_route+"/{}".format(location_id))
 
 
 def register(cli):

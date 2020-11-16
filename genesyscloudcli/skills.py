@@ -2,26 +2,26 @@ import api_client
 import click
 from click.decorators import option
 
-skill_route = "/api/v2/routing/skills"
+skills_route = "/api/v2/routing/skills"
 
 @click.group()
-def skill():
+def skills():
     """Functions to handle skills"""
     pass
 
-@skill.command()
+@skills.command()
 def list():
-    """Listing skills"""
+    """List skills"""
     client = api_client.ApiClient()
-    return client.get(skill_route)
+    return client.get(skills_route)
 
-@skill.command()
-@option("--skill_id", "-s", required=True, type=str)
+@skills.command()
+@click.argument("skill_id")
 def get(skill_id):
-    """List specific skill"""
+    """List a specific skill"""
     client = api_client.ApiClient()
-    return client.get(skill_route+"/{}".format(skill_id))
+    return client.get(skills_route+"/{}".format(skill_id))
 
 
 def register(cli):
-    cli.add_command(skill)
+    cli.add_command(skills)

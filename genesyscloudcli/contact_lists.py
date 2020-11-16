@@ -16,9 +16,9 @@ def list():
     return client.get(contact_list_route)
 
 @contact_list.command()
-@option("--contact_list_id", "-c", required=True, type=str)
+@click.argument("contact_list_id")
 def get(contact_list_id):
-    """List specific Contact Lists"""
+    """List specific Contact List"""
     client = api_client.ApiClient()
     return client.get(contact_list_route+"/{}".format(contact_list_id))
 

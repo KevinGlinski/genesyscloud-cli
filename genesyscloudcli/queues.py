@@ -5,23 +5,23 @@ from click.decorators import option
 queue_route = "/api/v2/routing/queues"
 
 @click.group()
-def queue():
+def queues():
     """Functions to handle Queues"""
     pass
 
-@queue.command()
+@queues.command()
 def list():
     """Listing Queues"""
     client = api_client.ApiClient()
     return client.get(queue_route)
 
-@queue.command()
-@option("--queue_id", "-q", required=True, type=str)
+@queues.command()
+@click.argument("queue_id")
 def get(queue_id):
-    """List specific queue"""
+    """List a specific queue"""
     client = api_client.ApiClient()
     return client.get(queue_route+"/{}".format(queue_id))
 
 
 def register(cli):
-    cli.add_command(queue)
+    cli.add_command(queues)
