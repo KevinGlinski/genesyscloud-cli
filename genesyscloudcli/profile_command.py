@@ -1,6 +1,7 @@
 
 import profile_handler
 import click
+import printer
 
 @click.group()
 def profile():
@@ -9,9 +10,12 @@ def profile():
 
 @profile.command()
 def new():
-    """Prompts user for new configuration section"""
-    mgr = profile_handler.ProfileHandler()
-    mgr.new_profile()
+    printer.print_data({'hello': 'world'})
+
+
+    # """Prompts user for new configuration section"""
+    # mgr = profile_handler.ProfileHandler()
+    # mgr.new_profile()
 
 @profile.command()
 @click.argument('profilename')
