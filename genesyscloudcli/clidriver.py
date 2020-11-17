@@ -1,3 +1,4 @@
+import analytics
 import campaigns
 import chat_command
 import click
@@ -6,6 +7,7 @@ import divisions
 import groups
 import locations
 import notifications_command
+import organization
 import presences
 import profile_command
 import queues
@@ -27,6 +29,7 @@ def cli(output, profile, page_size, page):
     click.get_current_context().meta['page'] = page    
     
 
+analytics.register(cli)
 campaigns.register(cli)
 profile_command.register(cli)
 chat_command.register(cli)
@@ -35,6 +38,7 @@ contact_lists.register(cli)
 divisions.register(cli)
 groups.register(cli)
 locations.register(cli)
+organization.register(cli)
 presences.register(cli)
 queues.register(cli)
 skills.register(cli)
