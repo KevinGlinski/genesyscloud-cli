@@ -14,8 +14,8 @@ def skills():
 def list():
     """List skills"""
     client = api_client.ApiClient()
-    response = client.get(skills_route)
-    printer.print_name_id_data(response['entities'])
+    response = client.get_paged_entities(skills_route)
+    printer.print_name_id_data(response)
 
 @skills.command()
 @click.argument("skill_id")

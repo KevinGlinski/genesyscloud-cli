@@ -6,6 +6,8 @@ import json
 import printer
 import os
 
+import click
+
 class ApiClient:
     token = ''
     environment = ''
@@ -43,6 +45,30 @@ class ApiClient:
 
     def get(self,uri):
         return self.call_api("GET", uri, None)
+
+    def get_paged_entities(self,uri):
+        page_size = click.get_current_context().meta['page_size']
+        page = click.get_current_context().meta['page']
+
+        if page > -1:
+            uri = uri + "?pageSize={}&pageNumber={}".format(page_size, page)
+            return self.call_api("GET", uri, None)['entities']
+
+        response_entities = self.call_api("GET", "{}?pageSize={}&pageNumber={}".format(uri, page_size, page), None)['entities']
+
+        entities = [] 
+
+        page = 1
+
+        while len(response_entities) > 0:
+            entities = entities + response_entities
+            page = page + 1
+            response_entities = self.call_api("GET", "{}?pageSize={}&pageNumber={}".format(uri, page_size, page), None)['entities']
+
+
+
+
+        return entities
 
     def call_api(self,method, uri, data):
         headers = {

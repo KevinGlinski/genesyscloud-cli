@@ -14,8 +14,9 @@ def queues():
 def list():
     """Listing Queues"""
     client = api_client.ApiClient()
-    response = client.get(queue_route)
-    printer.print_name_id_data(response['entities'])
+    response = client.get_paged_entities(queue_route)
+    
+    printer.print_name_id_data(response)
 
 @queues.command()
 @click.argument("queue_id")
