@@ -11,11 +11,16 @@ def locations():
     pass
 
 @locations.command()
-def list():
+@click.option('--full', is_flag=True, default=False)
+def list(full):
     """Listing locations"""
     client = api_client.ApiClient()
-    response = client.get(locations_route)
-    printer.print_name_id_data(response['entities'])
+    response = client.get_paged_entities(locations_route)
+    
+    if full:
+        printer.print_data(response)
+    else:
+        printer.print_name_id_data(response)
 
 @locations.command()
 @click.argument("location_id")

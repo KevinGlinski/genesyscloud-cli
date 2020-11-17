@@ -11,13 +11,17 @@ def queues():
     pass
 
 @queues.command()
-def list():
+@click.option('--full', is_flag=True, default=False)
+def list(full):
     """Listing Queues"""
     client = api_client.ApiClient()
     response = client.get_paged_entities(queue_route)
     
-    printer.print_name_id_data(response)
-
+    if full:
+        printer.print_data(response)
+    else:
+        printer.print_name_id_data(response)
+        
 @queues.command()
 @click.argument("queue_id")
 def get(queue_id):
