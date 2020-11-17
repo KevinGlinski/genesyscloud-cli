@@ -1,6 +1,6 @@
-import api_client
+from . import api_client
 import click
-import printer
+from . import printer
 
 @click.group()
 def analytics():
@@ -11,6 +11,7 @@ def analytics():
 @analytics.command()
 @click.argument("conversation_id")
 def conversation(conversation_id):
+
     client = api_client.ApiClient()
     response = client.get("/api/v2/analytics/conversations/{}/details".format(conversation_id))
     printer.print_data(response)

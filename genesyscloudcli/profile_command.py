@@ -1,7 +1,7 @@
 
-import profile_handler
+from . import profile_handler
 import click
-import printer
+from . import printer
 
 @click.group()
 def profile():

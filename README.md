@@ -79,7 +79,6 @@ Some commands require bodies to be sent with the request, such as creating a new
 
 ## Testing locally
 ```
-$ cd genesyscloudcli
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install --editable .

@@ -1,20 +1,19 @@
-import analytics
-import campaigns
-import chat_command
+from . import analytics
+from . import campaigns
+from . import chat_command
 import click
-import contact_lists
-import divisions
-import groups
-import locations
-import notifications_command
-import organization
-import presences
-import profile_command
-import queues
-import search
-import skills
-import users
-
+from . import contact_lists
+from . import divisions
+from . import groups
+from . import locations
+from . import notifications_command
+from . import organization
+from . import presences
+from . import profile_command
+from . import queues
+from . import search
+from . import skills
+from . import users
 
 @click.group()
 @click.option('--output', default="", help='Output format for commands (json, yaml, table)')

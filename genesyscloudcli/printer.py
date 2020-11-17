@@ -1,7 +1,7 @@
 import json
 import yaml
 from tabulate import tabulate
-import configuration
+from . import configuration
 import click
 
 config = configuration.Configuration()

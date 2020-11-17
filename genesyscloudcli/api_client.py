@@ -1,9 +1,9 @@
-import profile_handler
+from . import profile_handler
 import sys
 import requests
 import base64
 import json
-import printer
+from . import printer
 import os
 
 import click
@@ -18,7 +18,7 @@ class ApiClient:
 
         self.environment = profile.environment
 
-        auth = profile.client_id +":" + profile.client_secret
+        auth = profile.client_id + ":" + profile.client_secret
         authorization = base64.b64encode(auth.encode())
 
         request_headers = {
