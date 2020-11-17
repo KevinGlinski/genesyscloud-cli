@@ -30,7 +30,7 @@ Or switch a named profile to the default
 
 ### Configuration Options
 
-```~/.genesyscloud/config``` contains configurable options in the DEFAULT section.
+```~/.genesyscloud/config``` contains configurable options in the DEFAULT section
 
 ```
 [DEFAULT]
