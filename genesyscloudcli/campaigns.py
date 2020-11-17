@@ -5,23 +5,24 @@ from click.decorators import option
 campaign_route = "/api/v2/outbound/campaigns"
 
 @click.group()
-def campaign():
+def campaigns():
     """Functions to handle Campaigns"""
     pass
 
-@campaign.command()
+@campaigns.command()
 def list():
-    """Listing Campaigns"""
+    """List Campaigns"""
     client = api_client.ApiClient()
     return client.get(campaign_route)
 
-@campaign.command()
-@option("--campaign_id", "-c", required=True, type=str)
+@campaigns.command()
+@click.argument("campaign_id")
 def get(campaign_id):
-    """List specific Campaigns"""
+    """List a specific Campaign"""
+    print(campaign_id)
     client = api_client.ApiClient()
     return client.get(campaign_route+"/{}".format(campaign_id))
 
 
 def register(cli):
-    cli.add_command(campaign)
+    cli.add_command(campaigns)

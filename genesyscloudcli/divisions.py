@@ -5,23 +5,23 @@ from click.decorators import option
 division_route = "/api/v2/authorization/divisions"
 
 @click.group()
-def division():
+def divisions():
     """Functions to handle Divisions"""
     pass
 
-@division.command()
+@divisions.command()
 def list():
-    """Listing Divisions"""
+    """List Divisions"""
     client = api_client.ApiClient()
     return client.get(division_route)
 
-@division.command()
-@option("--division_id", "-d", required=True, type=str)
+@divisions.command()
+@click.argument("division_id")
 def get(division_id):
-    """List specific division"""
+    """List a specific division"""
     client = api_client.ApiClient()
     return client.get(division_route+"/{}".format(division_id))
 
 
 def register(cli):
-    cli.add_command(division)
+    cli.add_command(divisions)
