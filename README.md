@@ -28,6 +28,15 @@ Or switch a named profile to the default
 
 ```$ gc profile setdefault <profilename> ```
 
+### Configuration Options
+
+```~/.genesyscloud/config``` contains configurable options in the DEFAULT section.
+
+```
+[DEFAULT]
+output_type = yaml
+```
+
 ## Command Structure
 
 The Genesys Cloud cli uses a multipart structure 
