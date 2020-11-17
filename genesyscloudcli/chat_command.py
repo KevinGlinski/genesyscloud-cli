@@ -11,11 +11,11 @@ import requests
 
 @click.group()
 def chat():
-    """Functions to create chat interactions"""
+    """Functions to create chat interactions"""    
     pass
 
 @chat.command()
-def deployments():
+def deployments():    
     """Gets a list of chat deployments"""
     client = api_client.ApiClient()
     printer.print_name_id_data(client.get("/api/v2/widgets/deployments")['entities'])

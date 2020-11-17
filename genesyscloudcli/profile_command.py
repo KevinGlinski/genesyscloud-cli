@@ -28,6 +28,13 @@ def default():
     mgr = profile_handler.ProfileHandler()
     click.echo(mgr.get_profile(''))
 
+@profile.command()
+def list():
+    """Displays information on the current default configuration"""
+    mgr = profile_handler.ProfileHandler()
+    for section in mgr.get_sections():
+        print(section)
+
 
 def register(cli):
     cli.add_command(profile)
