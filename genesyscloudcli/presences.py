@@ -29,7 +29,7 @@ def get(presence_id):
     """List specific Presence Definition"""
     client = api_client.ApiClient()
     response = client.get(presence_route+"/{}".format(presence_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 def register(cli):
     cli.add_command(presence)
