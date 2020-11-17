@@ -1,5 +1,4 @@
 import configparser
-import json
 import os
 import click
 import sys
@@ -52,8 +51,6 @@ class ProfileHandler:
         client_id = input('OAuth Client ID: ')
         client_secret = input('OAuth Client Secret: ')
 
-        credentials = self.get_credentials_file()
-
         if len(profile) == 0:
             properties = {
                 'client_id' : client_id,
@@ -74,7 +71,6 @@ class ProfileHandler:
         self.save_credentials_file(config)
 
 
-
     def set_default(self, name):
         config = self.get_credentials_file()
         name = name.lower()
@@ -87,6 +83,7 @@ class ProfileHandler:
         config._defaults = properties
         self.save_credentials_file(config)
 
+
     def get_credentials_file(self):
         config_file_name = 'credentials'
         home = os.path.expanduser('~')
@@ -94,13 +91,13 @@ class ProfileHandler:
 
         config = configparser.ConfigParser()
         
-        # Get the current users home directory and check the ~/.aws/config file exists
+        # Get the current users home directory and check the ~/.genesyscloud/credential file exists
         if not os.path.isfile(config_file_path):
             return config
 
         config.read(config_file_path)
-
         return config
+
 
     def save_credentials_file(self, config):
         config_file_name = 'credentials'
@@ -109,6 +106,7 @@ class ProfileHandler:
 
         with open(config_file_path, 'w') as configfile:
             config.write(configfile)
+
 
     def get_sections(self):
         config = self.get_credentials_file()
