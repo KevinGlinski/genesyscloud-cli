@@ -1,6 +1,6 @@
 import click
-import printer
-import api_client
+from . import printer
+from . import api_client
 import json
 import websockets
 import asyncio

@@ -1,9 +1,18 @@
 from setuptools import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='genesyscloudcli',
-    version='0.1',
+    version='0.2',
     py_modules=['genesyscloudcli'],
+    license='MIT',
+    description = "CLI to interact with Genesys Cloud",
+    keywords = ['purecloud', 'genesys', 'genesys cloud'],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    python_requires='>=3.6',
     install_requires=[
         'Click',
         'pyyaml',
@@ -17,6 +26,6 @@ setup(
         # each line identifies one console script. 
         # The first part before the equals sign (=) is the name of the script that should be generated,
         # the second part is the import path followed by a colon (:) with the Click command.
-        gcli=clidriver:cli
+        gcli=genesyscloudcli.clidriver:cli
     ''',
 )

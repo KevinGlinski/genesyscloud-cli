@@ -3,7 +3,10 @@
 The Genesys Cloud cli is a tool to interact with [Genesys Cloud](https://developer.mypurecloud.com/)
 
 ## Install
-//TODO: pip install ... ?
+
+```
+pip install genesyscloudcli
+```
 
 ## Local setup
 
@@ -79,7 +82,6 @@ Some commands require bodies to be sent with the request, such as creating a new
 
 ## Testing locally
 ```
-$ cd genesyscloudcli
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install --editable .

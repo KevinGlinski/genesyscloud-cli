@@ -1,18 +1,19 @@
-import campaigns
-import chat_command
+from . import analytics
+from . import campaigns
+from . import chat_command
 import click
-import contact_lists
-import divisions
-import groups
-import locations
-import notifications_command
-import presences
-import profile_command
-import queues
-import search
-import skills
-import users
-
+from . import contact_lists
+from . import divisions
+from . import groups
+from . import locations
+from . import notifications_command
+from . import organization
+from . import presences
+from . import profile_command
+from . import queues
+from . import search
+from . import skills
+from . import users
 
 @click.group()
 @click.option('--output', default="", help='Output format for commands (json, yaml, table)')
@@ -27,6 +28,7 @@ def cli(output, profile, page_size, page):
     click.get_current_context().meta['page'] = page    
     
 
+analytics.register(cli)
 campaigns.register(cli)
 profile_command.register(cli)
 chat_command.register(cli)
@@ -35,6 +37,7 @@ contact_lists.register(cli)
 divisions.register(cli)
 groups.register(cli)
 locations.register(cli)
+organization.register(cli)
 presences.register(cli)
 queues.register(cli)
 skills.register(cli)

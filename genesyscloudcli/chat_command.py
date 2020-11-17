@@ -1,6 +1,6 @@
 import click
-import printer
-import api_client
+from . import printer
+from . import api_client
 from aioconsole import ainput
 import websockets
 import asyncio

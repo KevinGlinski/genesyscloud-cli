@@ -1,6 +1,6 @@
-import api_client
+from . import api_client
 import click
-import printer
+from . import printer
 from click.decorators import option
 
 campaigns_route = "/api/v2/outbound/campaigns"
