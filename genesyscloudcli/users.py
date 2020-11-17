@@ -54,6 +54,22 @@ def new(input):
     printer.print_json(response)
 
 
+@users.command()
+@click.argument('user_id', nargs=1)
+@click.argument('input', nargs=-1)
+def update(user_id, input):
+    """Update a specific user"""
+
+    # try for stdin
+    if not sys.stdin.isatty():
+        input = json.load(sys.stdin)
+
+    data = get_json(input)
+    client = api_client.ApiClient()
+    response = client.patch(users_route+"/{}".format(user_id), data)
+    printer.print_json(response)
+
+
 def get_json(input):
     if type(input) is tuple:
         input = input[0]
@@ -61,11 +77,9 @@ def get_json(input):
         return json.loads(input)
     except (ValueError, TypeError):
         if is_file(input):
-            print("IS FILE")
             f = open(input, "r")
             return json.loads(f.read())
         elif is_json(input):
-            print("IS JSON")
             return json.loads(json.dumps(input))
         else:
             raise ValueError("ERROR: Please input a valid JSON string or a file containing valid JSON")

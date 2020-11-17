@@ -38,13 +38,14 @@ class ApiClient:
         self.token = response_json['token_type'] + ' ' + response_json['access_token']
 
 
-
-
     def post(self, uri, data):
         return self.call_api("POST", uri, data)
 
     def get(self,uri):
         return self.call_api("GET", uri, None)
+
+    def patch(self, uri, data):
+        return self.call_api("PATCH", uri, data)
 
     def get_paged_entities(self,uri):
         page_size = click.get_current_context().meta['page_size']
@@ -65,10 +66,8 @@ class ApiClient:
             page = page + 1
             response_entities = self.call_api("GET", "{}?pageSize={}&pageNumber={}".format(uri, page_size, page), None)['entities']
 
-
-
-
         return entities
+        
 
     def call_api(self,method, uri, data):
         headers = {
