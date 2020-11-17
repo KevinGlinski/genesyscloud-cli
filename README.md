@@ -61,19 +61,19 @@ For resources that have multiple pages such as listing users, there are options 
 
 Some commands require bodies to be sent with the request, such as creating a new user.  The body can be supplied a number of ways.
 
-1) Passing json with the command
+1) Passing json with the command (escaped whitespace is not currently supported)
     ```
-    $ gc user new "{\"name":\"Joe Smith\"}"
+    $ gc users new "{\"name":\"Joe Smith\"}"
     ```
 
 2) Referencing a file
     ```
-    $ gc user new file://user.json
+    $ gc users new user.json
     ```
 
 3) Stream input
     ```
-    $ gc user new < user.json
+    $ gc users new < user.json
     ```
 
     ```
