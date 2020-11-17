@@ -7,14 +7,6 @@ The Genesys Cloud cli is a tool to interact with [Genesys Cloud](https://develop
 
 ## Local setup
 
-Testing locally
-```
-$ cd genesyscloudcli
-$ virtualenv venv
-$ . venv/bin/activate
-$ pip install --editable .
-```
-
 The cli authenticates using client credentials which you will have to [create yourself](https://help.mypurecloud.com/articles/create-an-oauth-client/)
 
 ```gc profile new``` is the easiest way to setup your credentials.  This will create a credentials file at ~/.genesyscloud/credentials and can support multiple profiles for different organizations.
@@ -49,9 +41,8 @@ $ gc <command> <subcommand> [options and params]
 For resources that have multiple pages such as listing users, there are options available on how to process the pages.  By default the cli uses a page size of 250 and retrieves all items.
 
  ```
- --no-paginate  # only return first page
  --page-size    # set a page size other than 250
- --page-index   # return a specific page
+ --page-number   # return a specific page
  ```
 
 ### Data Inputs
@@ -76,3 +67,11 @@ Some commands require bodies to be sent with the request, such as creating a new
     ```
     $ echo "{\"name":\"Joe Smith\"}" | gc user new
     ```
+
+## Testing locally
+```
+$ cd genesyscloudcli
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install --editable .
+```
