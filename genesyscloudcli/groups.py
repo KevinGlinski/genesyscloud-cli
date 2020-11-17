@@ -28,7 +28,7 @@ def get(group_id):
     """List a specific Group"""
     client = api_client.ApiClient()
     response = client.get(group_route+"/{}".format(group_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

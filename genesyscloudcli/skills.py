@@ -28,7 +28,7 @@ def get(skill_id):
     """List a specific skill"""
     client = api_client.ApiClient()
     response = client.get(skills_route+"/{}".format(skill_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

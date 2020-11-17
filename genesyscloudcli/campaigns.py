@@ -29,7 +29,7 @@ def get(campaign_id):
     print(campaign_id)
     client = api_client.ApiClient()
     response = client.get(campaigns_route+"/{}".format(campaign_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

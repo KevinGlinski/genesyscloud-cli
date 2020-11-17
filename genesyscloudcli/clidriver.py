@@ -9,6 +9,7 @@ import notifications_command
 import presences
 import profile_command
 import queues
+import search
 import skills
 import users
 
@@ -37,4 +38,5 @@ locations.register(cli)
 presences.register(cli)
 queues.register(cli)
 skills.register(cli)
+search.register(cli)
 users.register(cli)

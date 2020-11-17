@@ -28,7 +28,7 @@ def get(division_id):
     """List a specific division"""
     client = api_client.ApiClient()
     response = client.get(division_route+"/{}".format(division_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 def register(cli):
     cli.add_command(divisions)

@@ -32,7 +32,7 @@ def get(user_id):
     """Get a specific User"""
     client = api_client.ApiClient()
     response = client.get(users_route+"/{}".format(user_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @users.command()

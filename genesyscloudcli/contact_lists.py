@@ -28,7 +28,7 @@ def get(contactlist_id):
     """List specific Contact List"""
     client = api_client.ApiClient()
     response = client.get(contactlists_route+"/{}".format(contactlist_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

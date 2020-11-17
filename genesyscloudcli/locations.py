@@ -28,7 +28,7 @@ def get(location_id):
     """List specific locations"""
     client = api_client.ApiClient()
     response = client.get(locations_route+"/{}".format(location_id))
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):
