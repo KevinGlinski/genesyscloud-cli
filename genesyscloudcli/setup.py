@@ -9,7 +9,8 @@ setup(
         'pyyaml',
         'websockets',
         'requests', 
-        'aioconsole'
+        'aioconsole',
+        'tabulate'
     ],
     entry_points='''
         [console_scripts]

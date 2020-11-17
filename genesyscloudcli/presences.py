@@ -1,27 +1,30 @@
 import api_client
 import click
+import printer
 from click.decorators import option
 
 presence_route = "/api/v2/presencedefinitions"
 
 @click.group()
-def presences():
+def presence():
     """Functions to handle Divisions"""
     pass
 
-@presences.command()
+@presence.command()
 def list():
     """Listing Presence Definitions"""
     client = api_client.ApiClient()
-    return client.get(presence_route)
+    response = client.get(presence_route)
+    print(response)
+    printer.print_name_id_data(response['entities'], name = 'systemPresence')
 
-@presences.command()
+@presence.command()
 @click.argument("presence_id")
 def get(presence_id):
     """List specific Presence Definition"""
     client = api_client.ApiClient()
-    return client.get(presence_route+"/{}".format(presence_id))
-
+    response = client.get(presence_route+"/{}".format(presence_id))
+    printer.print_json(response)
 
 def register(cli):
-    cli.add_command(presences)
+    cli.add_command(presence)

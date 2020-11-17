@@ -1,5 +1,6 @@
 import api_client
 import click
+import printer
 from click.decorators import option
 
 queue_route = "/api/v2/routing/queues"
@@ -13,14 +14,16 @@ def queues():
 def list():
     """Listing Queues"""
     client = api_client.ApiClient()
-    return client.get(queue_route)
+    response = client.get(queue_route)
+    printer.print_name_id_data(response['entities'])
 
 @queues.command()
 @click.argument("queue_id")
 def get(queue_id):
     """List a specific queue"""
     client = api_client.ApiClient()
-    return client.get(queue_route+"/{}".format(queue_id))
+    response = client.get(queue_route+"/{}".format(queue_id))
+    printer.print_json(response)
 
 
 def register(cli):

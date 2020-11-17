@@ -5,14 +5,20 @@ import configuration
 
 config = configuration.Configuration()
 
-def print_name_id_data(data):
+def print_name_id_data(data, **kwargs):
     """Prints only the name and ids from a list of objects"""
     name_ids = []
     for o in data:
-        name_ids.append({
-            "id": o['id'],
-            "name": o['name']
-        })
+        if 'name' in kwargs:
+            name_ids.append({
+                "id": o['id'],
+                kwargs['name']: o[kwargs['name']]
+            })
+        else:
+            name_ids.append({
+                "id": o['id'],
+                "name": o['name']
+            })
 
     print_data(name_ids)
 

@@ -1,27 +1,30 @@
 import api_client
 import click
+import printer
 from click.decorators import option
 
-contact_list_route = "/api/v2/outbound/contactlists"
+contactlists_route = "/api/v2/outbound/contactlists"
 
 @click.group()
-def contact_list():
+def contactlists():
     """Functions to handle Contact Lists"""
     pass
 
-@contact_list.command()
+@contactlists.command()
 def list():
     """Listing Contact Lists"""
     client = api_client.ApiClient()
-    return client.get(contact_list_route)
+    response = client.get(contactlists_route)
+    printer.print_name_id_data(response['entities'])
 
-@contact_list.command()
-@click.argument("contact_list_id")
-def get(contact_list_id):
+@contactlists.command()
+@click.argument("contactlist_id")
+def get(contactlist_id):
     """List specific Contact List"""
     client = api_client.ApiClient()
-    return client.get(contact_list_route+"/{}".format(contact_list_id))
+    response = client.get(contactlists_route+"/{}".format(contactlist_id))
+    printer.print_json(response)
 
 
 def register(cli):
-    cli.add_command(contact_list)
+    cli.add_command(contactlists)

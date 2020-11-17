@@ -1,5 +1,6 @@
 import api_client
 import click
+import printer
 from click.decorators import option
 
 skills_route = "/api/v2/routing/skills"
@@ -13,14 +14,16 @@ def skills():
 def list():
     """List skills"""
     client = api_client.ApiClient()
-    return client.get(skills_route)
+    response = client.get(skills_route)
+    printer.print_name_id_data(response['entities'])
 
 @skills.command()
 @click.argument("skill_id")
 def get(skill_id):
     """List a specific skill"""
     client = api_client.ApiClient()
-    return client.get(skills_route+"/{}".format(skill_id))
+    response = client.get(skills_route+"/{}".format(skill_id))
+    printer.print_json(response)
 
 
 def register(cli):
