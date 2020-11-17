@@ -26,6 +26,6 @@ setup(
         # each line identifies one console script. 
         # The first part before the equals sign (=) is the name of the script that should be generated,
         # the second part is the import path followed by a colon (:) with the Click command.
-        gcli=genesyscloudcli.clidriver:cli
+        gc=genesyscloudcli.clidriver:cli
     ''',
 )

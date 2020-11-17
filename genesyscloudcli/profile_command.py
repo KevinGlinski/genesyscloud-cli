@@ -26,7 +26,7 @@ def setdefault(profilename):
 def default():
     """Displays information on the current default configuration"""
     mgr = profile_handler.ProfileHandler()
-    click.echo(mgr.get_profile(''))
+    click.echo(mgr.get_profile())
 
 @profile.command()
 def list():
