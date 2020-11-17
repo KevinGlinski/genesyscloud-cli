@@ -14,10 +14,13 @@ import user
 
 
 @click.group()
-def cli():
-    """Entry point"""
-    pass
-
+@click.option('--output', default="", help='Output format for commands (json, yaml, table)')
+@click.option('--profile', default="", help='Which configured profile to use')
+def cli(output, profile):
+    """The Genesys Cloud cli is a tool to interact with Genesys Cloud"""
+    click.get_current_context().meta['output'] = output
+    click.get_current_context().meta['profile'] = profile
+    
 
 campaign.register(cli)
 profile_command.register(cli)

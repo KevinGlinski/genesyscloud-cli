@@ -2,6 +2,7 @@ import json
 import yaml
 from tabulate import tabulate
 import configuration
+import click
 
 config = configuration.Configuration()
 
@@ -17,8 +18,15 @@ def print_name_id_data(data):
     print_data(name_ids)
 
 def print_data(data):    
-    if config.output_type == 'yaml':
+    specified_format = click.get_current_context().meta['output']
+
+    if specified_format == '':
+        specified_format = config.output_type
+
+    if specified_format == 'yaml':
         print_yaml(data)
+    elif specified_format == 'table':
+        print_table(data)
     else:
         print_json(data)
 

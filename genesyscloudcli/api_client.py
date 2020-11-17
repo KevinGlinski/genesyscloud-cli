@@ -10,9 +10,9 @@ class ApiClient:
     token = ''
     environment = ''
     
-    def __init__(self, profile_name=''):
+    def __init__(self):
         handler = profile_handler.ProfileHandler()
-        profile = handler.get_profile(profile_name)
+        profile = handler.get_profile()
 
         self.environment = profile.environment
 

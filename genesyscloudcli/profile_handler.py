@@ -1,7 +1,8 @@
 import configparser
 import json
 import os
-
+import click
+import sys
 class Profile:
     environment='mypurecloud.com'
     client_id=''
@@ -13,8 +14,9 @@ class Profile:
 
 
 class ProfileHandler:
-    def get_profile(self, name):
-        name = name.lower()
+    def get_profile(self):
+
+        name = click.get_current_context().meta['profile'].lower()
 
         credentials = self.get_credentials_file()
 
@@ -25,16 +27,22 @@ class ProfileHandler:
             profile.environment = credentials._defaults['environment']
             profile.client_id = credentials._defaults['client_id']
             profile.client_secret = credentials._defaults['client_secret']
-            if 'profile' in credentials._defaults:
-                profile.name = credentials._defaults['client_secret']
+            if 'name' in credentials._defaults:
+                profile.name = credentials._defaults['name']
             return profile
 
-        if not config.has_section(profile):
+        if not credentials.has_section(name):
             print("profile {} not found".format(name))
             sys.exit(1)
             return
 
-        return Profile()
+        profile.environment = credentials[name]['environment']
+        profile.client_id = credentials[name]['client_id']
+        profile.client_secret = credentials[name]['client_secret']
+        if 'name' in credentials[name]:
+            profile.name = credentials[name]['name']
+
+        return profile
     
     def new_profile(self):
         config = self.get_credentials_file()
@@ -101,3 +109,7 @@ class ProfileHandler:
 
         with open(config_file_path, 'w') as configfile:
             config.write(configfile)
+
+    def get_sections(self):
+        config = self.get_credentials_file()
+        return config.sections()
