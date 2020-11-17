@@ -11,12 +11,18 @@ def presence():
     pass
 
 @presence.command()
-def list():
+@click.option('--full', is_flag=True, default=False)
+def list(full):
     """Listing Presence Definitions"""
     client = api_client.ApiClient()
     response = client.get(presence_route)
     print(response)
-    printer.print_name_id_data(response['entities'], name = 'systemPresence')
+
+    if full:
+        printer.print_json(response['entities'])
+    else:
+        printer.print_name_id_data(response['entities'], name = 'systemPresence')
+    
 
 @presence.command()
 @click.argument("presence_id")

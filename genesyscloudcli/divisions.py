@@ -11,11 +11,16 @@ def divisions():
     pass
 
 @divisions.command()
-def list():
+@click.option('--full', is_flag=True, default=False)
+def list(full):
     """List Divisions"""
     client = api_client.ApiClient()
     response = client.get(division_route)
-    printer.print_name_id_data(response['entities'])
+    
+    if full:
+        printer.print_json(response['entities'])
+    else:
+        printer.print_name_id_data(response['entities'])
 
 @divisions.command()
 @click.argument("division_id")

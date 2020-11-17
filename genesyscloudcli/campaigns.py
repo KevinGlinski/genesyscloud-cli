@@ -11,11 +11,16 @@ def campaigns():
     pass
 
 @campaigns.command()
-def list():
+@click.option('--full', is_flag=True, default=False)
+def list(full):
     """List Campaigns"""
     client = api_client.ApiClient()
     response = client.get(campaigns_route)
-    printer.print_name_id_data(response['entities'])
+    
+    if full:
+        printer.print_json(response['entities'])
+    else:
+        printer.print_name_id_data(response['entities'])
 
 @campaigns.command()
 @click.argument("campaign_id")
