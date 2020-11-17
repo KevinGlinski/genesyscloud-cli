@@ -3,6 +3,7 @@ from . import api_client
 import click
 import json
 import sys
+from . import input_util as util
 from . import printer
 from click.decorators import option
 
@@ -39,7 +40,7 @@ def get(user_id):
 @users.command()
 @click.argument('input', nargs=-1)
 def new(input):
-    """Create a new user"""
+    """Create a new User"""
     # TODO for some reason the input is getting converted into an object and if escaped characters are supplied from the command line
     # They are not escaped correctly
     # At this point we can't handle escaped characters.
@@ -48,7 +49,7 @@ def new(input):
     if not sys.stdin.isatty():
         input = json.load(sys.stdin)
 
-    data = get_json(input)
+    data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(users_route, data)
     printer.print_json(response)
@@ -58,47 +59,16 @@ def new(input):
 @click.argument('user_id', nargs=1)
 @click.argument('input', nargs=-1)
 def update(user_id, input):
-    """Update a specific user"""
+    """Update a specific User"""
 
     # try for stdin
     if not sys.stdin.isatty():
         input = json.load(sys.stdin)
 
-    data = get_json(input)
+    data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.patch(users_route+"/{}".format(user_id), data)
     printer.print_json(response)
-
-
-def get_json(input):
-    if type(input) is tuple:
-        input = input[0]
-    try:
-        return json.loads(input)
-    except (ValueError, TypeError):
-        if is_file(input):
-            f = open(input, "r")
-            return json.loads(f.read())
-        elif is_json(input):
-            return json.loads(json.dumps(input))
-        else:
-            raise ValueError("ERROR: Please input a valid JSON string or a file containing valid JSON")
-
-
-def is_json(input):
-    try:
-        json.dumps(input)
-        return True
-    except (ValueError, TypeError):
-        return False
-
-
-def is_file(input):
-    try:
-        f = open(input, "r")
-        return is_json(f.read())
-    except (FileNotFoundError, TypeError):
-        return False
         
 
 def register(cli):

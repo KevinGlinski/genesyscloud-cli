@@ -1,7 +1,10 @@
-from . import api_client
 import click
-from . import printer
 from click.decorators import option
+import json
+import sys
+from . import api_client
+from . import input_util as util
+from . import printer
 
 queue_route = "/api/v2/routing/queues"
 
@@ -29,6 +32,40 @@ def get(queue_id):
     client = api_client.ApiClient()
     response = client.get(queue_route+"/{}".format(queue_id))
     printer.print_data(response)
+
+
+@queues.command()
+@click.argument('input', nargs=-1)
+def new(input):
+    """Create a new Queue"""
+    # TODO for some reason the input is getting converted into an object and if escaped characters are supplied from the command line
+    # They are not escaped correctly
+    # At this point we can't handle escaped characters.
+
+    # try for stdin
+    if not sys.stdin.isatty():
+        input = json.load(sys.stdin)
+
+    data = util.get_json(input)
+    client = api_client.ApiClient()
+    response = client.post(queue_route, data)
+    printer.print_json(response)
+
+
+@queues.command()
+@click.argument('queue_id', nargs=1)
+@click.argument('input', nargs=-1)
+def update(queue_id, input):
+    """Update a specific Queue"""
+
+    # try for stdin
+    if not sys.stdin.isatty():
+        input = json.load(sys.stdin)
+
+    data = util.get_json(input)
+    client = api_client.ApiClient()
+    response = client.put(queue_route+"/{}".format(queue_id), data)
+    printer.print_json(response)
 
         
 @queues.command()

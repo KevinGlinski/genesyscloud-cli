@@ -44,6 +44,9 @@ class ApiClient:
     def get(self,uri):
         return self.call_api("GET", uri, None)
 
+    def put(self, uri, data):
+        return self.call_api("PUT", uri, data)
+
     def patch(self, uri, data):
         return self.call_api("PATCH", uri, data)
 
@@ -67,7 +70,7 @@ class ApiClient:
             response_entities = self.call_api("GET", "{}?pageSize={}&pageNumber={}".format(uri, page_size, page), None)['entities']
 
         return entities
-        
+
 
     def call_api(self,method, uri, data):
         headers = {
