@@ -5,7 +5,7 @@ from . import printer
 
 @click.group()
 def profile():
-    """Functions to manage credentials profiles"""
+    """Functions to manage CLI credentials profiles"""
     pass
 
 @profile.command()

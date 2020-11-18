@@ -49,7 +49,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(locations_route, data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @locations.command()
@@ -65,7 +65,7 @@ def update(location_id, input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.patch(locations_route+"/{}".format(location_id), data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):
