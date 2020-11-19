@@ -52,7 +52,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(users_route, data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @users.command()
@@ -68,7 +68,7 @@ def update(user_id, input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.patch(users_route+"/{}".format(user_id), data)
-    printer.print_json(response)
+    printer.print_data(response)
         
 
 def register(cli):

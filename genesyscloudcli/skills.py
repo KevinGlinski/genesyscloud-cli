@@ -49,8 +49,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(skills_route, data)
-    printer.print_json(response)
-
+    printer.print_data(response)
 
 def register(cli):
     cli.add_command(skills)

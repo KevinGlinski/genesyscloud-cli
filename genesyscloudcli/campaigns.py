@@ -50,7 +50,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(campaigns_route, data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @campaigns.command()
@@ -66,7 +66,7 @@ def update(campaign_id, input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.put(campaigns_route+"/{}".format(campaign_id), data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

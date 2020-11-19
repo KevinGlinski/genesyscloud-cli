@@ -49,7 +49,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(queue_route, data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @queues.command()
@@ -65,7 +65,7 @@ def update(queue_id, input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.put(queue_route+"/{}".format(queue_id), data)
-    printer.print_json(response)
+    printer.print_data(response)
 
         
 @queues.command()

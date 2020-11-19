@@ -49,7 +49,7 @@ def new(input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.post(contactlists_route, data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 @contactlists.command()
@@ -65,7 +65,7 @@ def update(contactlist_id, input):
     data = util.get_json(input)
     client = api_client.ApiClient()
     response = client.put(contactlists_route+"/{}".format(contactlist_id), data)
-    printer.print_json(response)
+    printer.print_data(response)
 
 
 def register(cli):

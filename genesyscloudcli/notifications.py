@@ -6,11 +6,11 @@ import websockets
 import asyncio
 import ssl 
 @click.group()
-def notification():
+def notifications():
     """Functions to subscribe to web socket notifications"""
     pass
 
-@notification.command()
+@notifications.command()
 @click.argument('topics', nargs=-1)
 def subscribe(topics):
     client = api_client.ApiClient()
@@ -43,4 +43,4 @@ async def websocket_listener(wss_uri):
             print('-----------------------------')
 
 def register(cli):
-    cli.add_command(notification)
+    cli.add_command(notifications)
