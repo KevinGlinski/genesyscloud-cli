@@ -1,5 +1,7 @@
 # Genesys Cloud CLI
 
+> ⚠ **WARNING:** This is a result of a hackathon project and while it is functional it is not officially supported by the Genesys Development Group.
+
 The Genesys Cloud cli is a tool to interact with [Genesys Cloud](https://developer.mypurecloud.com/)
 
 ## Install
