@@ -5,6 +5,7 @@ import click
 from . import contact_lists
 from . import divisions
 from . import groups
+from . import http
 from . import locations
 from . import notifications
 from . import organization
@@ -38,6 +39,7 @@ notifications.register(cli)
 contact_lists.register(cli)
 divisions.register(cli)
 groups.register(cli)
+http.register(cli)
 locations.register(cli)
 organization.register(cli)
 presences.register(cli)
