@@ -2,6 +2,7 @@ from . import api_client
 import click
 from . import printer
 from click.decorators import option
+import json
 
 from . import input_util as util
 import sys
@@ -16,11 +17,11 @@ def get(uri):
   
 @click.command()
 @click.argument('uri')
-@click.argument('body')
+@click.argument('body', nargs=-1)
 def post(uri, body):
     # try for stdin
     if not sys.stdin.isatty():
-        input = json.load(sys.stdin)
+        body = json.load(sys.stdin)
 
     data = util.get_json(body)
     
