@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='genesyscloudcli',
-    version='0.4',
+    version='0.5',
     py_modules=['genesyscloudcli'],
     license='MIT',
     description = "CLI to interact with Genesys Cloud",
