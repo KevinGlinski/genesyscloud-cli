@@ -21,6 +21,12 @@ def setdefault(profilename):
     mgr = profile_handler.ProfileHandler()
     mgr.set_default(profilename)
 
+@profile.command()
+@click.argument('profilename')
+def use(profilename):
+    """Takes a profile by name and makes it the default configuration"""
+    mgr = profile_handler.ProfileHandler()
+    mgr.set_default(profilename)
 
 @profile.command()
 def default():
